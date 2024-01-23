@@ -1,35 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head id="head">
-        <script>
-            // setInterval(() => {
-            //     console.log('checking for error IFRAME');
-            //     const IF = document.querySelector('body > iframe');
-            //     if (IF) {
-            //         IF.style.pointerEvents = 'none';
-            //         IF.style.opacity = '0.3';
-            //     }
-            // }, 1000);
-
-            window.addEventListener('message', (e) => {
-                const data = e.data;
-                if (data.type === 'DISPLAY_ERROR') {
-                    const IF = document.querySelector('body > iframe');
-                    if (IF) {
-                        const error = IF.contentDocument?.body?.innerText;
-                        const m = error.match(/\/comp\/comp_(bnode_[a-z0-9]+)/);
-                        if(m){
-                            IF.style.pointerEvents = 'none';
-                            IF.style.opacity = '0.2';
-                        }
-                        else{
-                            
-                        }
-                    }
-                }
-            });
-        </script>
-
+      
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
@@ -94,12 +66,18 @@
         </style>
 
 
+         <!-- RELAY JS -->
         <script>
             const send_message = (data) => {
                 window.parent.parent?.postMessage(data, '*');
             };
 
             const tim = setInterval(()=>{
+                const g_fn = window.g_fn;
+                if(!g_fn){
+                    console.log("WAITING FOR G_FN TO BE LOADED BEFORE REQUESTING RELAY JS");
+                    return;
+                }
                 const data = {
                     type: "req_for_relay_js"
                 }
@@ -130,12 +108,40 @@
             window.addEventListener('message', listen_msg);
         </script>
 
+
+        <!-- ~~~ SETUP DEV MODULE ~~~ -->
+        <script>
+            let id = setInterval(() => {
+                const B = window.broken || false;
+                if (B) {
+                    clearInterval(id);
+                    console.log('INIT: offline module');
+                    if(B.offline) B.current = B.offline;
+                    return;
+                }
+            });
+
+            let id2 = setInterval(() => {
+                const g_fn = window.g_fn || false;
+                if (g_fn) {
+                    clearInterval(id2);
+                    console.log('INIT: g_fn.AS.is_dev = true');
+                    g_fn.AS.is_dev = true;
+                    return;
+                }
+            });
+        </script>
+
+
+
+
         <!-- {TEMPLATE_HEAD_CONTENTS} -->
     </head>
 
     <body style="overflow: hidden; user-select: none; background-color: rgb(228 228 231);">
         <div id="root"></div>
-
-        <!-- <div id="dot" style="width: 8px; height: 8px; top: 0px; left: 0px; background: darksalmon; position: absolute; border-radius: 50%; pointer-events: none;"></div> -->
+        
+        <div id="dot" style="width: 8px; height: 8px; top: 0px; left: 0px; background: darksalmon; position: absolute; border-radius: 50%; pointer-events: none;"></div>
+        <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

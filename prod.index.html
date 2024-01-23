@@ -3,18 +3,7 @@
 
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    }
-                }
-            }
-        }
-    </script>
+    
 
     <!-- dark-mode -->
     <script>
@@ -68,12 +57,38 @@
         }, 1);
     </script>
 
+
+    <!-- SETUP PROD MODULE -->
+    <script>
+        let id = setInterval(() => {
+            const B = window.broken || false;
+            if (B) {
+                clearInterval(id);
+                console.log('INIT: online module');
+                if(B.online) B.current = B.online;
+                return;
+            }
+        });
+
+        let id2 = setInterval(() => {
+            const g_fn = window.g_fn || false;
+            if (g_fn) {
+                clearInterval(id2);
+                console.log('INIT: g_fn.AS.is_dev = false');
+                g_fn.AS.is_dev = false;            }
+        });
+    </script>
+
+
+
     <!-- {TEMPLATE_HEAD_CONTENTS} -->
+
+    
 </head>
 
 <body>
     <div id="root" from="broken"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
