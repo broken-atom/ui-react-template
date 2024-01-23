@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- dark-mode -->
+    <script>
+        (()=>{
+            const setup_darkmode = () => {
+                const EL = document.body;
+                if(!EL) return console.error("No body element");
+                const IS_DARK = window.matchMedia('(prefers-color-scheme:dark)').matches; // boolean
+                if(IS_DARK) EL.classList.add('dark');
+                if(!IS_DARK) EL.classList.remove('dark');
+                
+                window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e=>{
+                    if(e.matches) { // user switched to dark theme
+                        EL.classList.add('dark');
+                    } else { // user switched to light theme
+                        EL.classList.remove('dark');
+                    }
+                })
+            }
+            setup_darkmode();
+        })();
+    </script>
+
+
+    <link id="feedback-style" rel="stylesheet" href="https://stdlib.brokenatom.io/module/test/v39/feedback-style.css" />
+    <script id="stdlib-script" src="https://stdlib.brokenatom.io/module/test/v39/online.js"></script>
+
+    <script>
+        const int = setInterval(() => {
+            const g_fn = window.g_fn;
+            if (g_fn) {
+                // Get the creator_id
+                const c = g_fn.GET_GC();
+                if(!c) return console.error("GET_GC returning null");
+                const creator_id = c.CREATOR_ID;
+                if(!creator_id) return console.error("No CREATOR_ID in GET_GC");
+                (async () => {
+                    const res = await fetch(`https://user-api.brokenatom.io/api/v1/user_acc_type?user_id=${creator_id}`);
+                    const res_json = await res.json();
+                    if(res_json.success) {
+                        const data = res_json.data;
+                        if(data[0].user_acc_type === "free") {
+                            const s = document.getElementById("built_with_brokenatom");
+                            // Remove hidden in classList
+                            if(s) s.classList.remove("hidden");
+                        }
+                    }
+                })();
+                clearInterval(int);
+            }
+        }, 1);
+    </script>
+
+    <!-- {TEMPLATE_HEAD_CONTENTS} -->
+</head>
+
+<body>
+    <div id="root" from="broken"></div>
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
