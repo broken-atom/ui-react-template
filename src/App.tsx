@@ -29,9 +29,9 @@ const AS = g_fn.AS;
 // setupOfflineStdLib();
 
 
-import STDLIB from "./stdlib";
-STDLIB.init(g_fn.GET_GC().APP_ID);
-window.broken.current = window.broken.online;
+// import STDLIB from "./stdlib";
+// STDLIB.init(g_fn.GET_GC().APP_ID);
+// window.broken.current = window.broken.online;
 
 // @ts-ignore
 window.g_fn = g_fn;

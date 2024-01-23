@@ -94,6 +94,30 @@
 
 
 
+    <!-- SETUP PROD MODULE -->
+    <script>
+        let id = setInterval(() => {
+            const B = window.broken || false;
+            if (B) {
+                clearInterval(id);
+                console.log('INIT: online module');
+                if(B.online) B.current = B.online;
+                return;
+            }
+        });
+
+        let id2 = setInterval(() => {
+            const g_fn = window.g_fn || false;
+            if (g_fn) {
+                clearInterval(id2);
+                console.log('INIT: g_fn.AS.is_dev = false');
+                g_fn.AS.is_dev = false;            
+            }
+        });
+    </script>
+
+
+
 
     <!-- {TEMPLATE_HEAD_CONTENTS} -->
 </head>
@@ -102,7 +126,9 @@
     <div id="root"></div>
     
     <!-- @debug:mouse -->
-    <div id="dot" style="width: 8px; height: 8px; top: 0px; left: 0px; background: darksalmon; position: absolute; border-radius: 50%; pointer-events: none;"></div>
+    <!-- <div id="dot" style="width: 8px; height: 8px; top: 0px; left: 0px; background: darksalmon; position: absolute; border-radius: 50%; pointer-events: none;"></div> -->
+    
+    
     <script type="module" src="/src/main.tsx"></script>
 </body>
 
