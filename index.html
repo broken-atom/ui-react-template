@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+
+
+    <link
+        id="feedback-style"
+        rel="stylesheet"
+        href="https://stdlib.brokenatom.io/module/test/v39/feedback-style.css"
+    />
+    <script
+        id="stdlib-script"
+        src="https://stdlib.brokenatom.io/module/test/v39/online-offline.js"
+    ></script>
+
+
+    <!-- dark-mode -->
+    <script>
+        (()=>{
+            const setup_darkmode = () => {
+                // @IMPORTANT: There is no body while doing server side rendering
+                const BODY_EL = document.body;
+                const IS_DARK = window.matchMedia('(prefers-color-scheme:dark)').matches; // boolean
+
+                if (!BODY_EL) return console.error("body element not found");
+
+                if(IS_DARK) BODY_EL.classList.add('dark');
+                if(!IS_DARK) BODY_EL.classList.remove('dark');
+
+                window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e=>{
+                    if(e.matches) { // user switched to dark theme
+                        BODY_EL.classList.add('dark');
+                    } else { // user switched to light theme
+                        BODY_EL.classList.remove('dark');
+                    }
+                })
+            }
+            setup_darkmode();
+        })();
+    </script>
+
+
+
+    <!-- RELAY JS -->
+    <script>
+        const send_message = (data) => {
+            window.parent.parent?.postMessage(data, '*');
+        };
+
+        const tim = setInterval(()=>{
+            const g_fn = window.g_fn;
+            if(!g_fn){
+                console.log("WAITING FOR G_FN TO BE LOADED BEFORE REQUESTING RELAY JS");
+                return;
+            }
+            const data = {
+                type: "req_for_relay_js"
+            }
+            send_message(data);
+        }, 1000);
+
+        const listen_msg = (e)=>{
+            const data = e.data;
+            if (data.type === 'relay_js') {
+                const code = data.code;
+                if(code){
+                    // console.log("relay js", code);
+                    clearInterval(tim);
+                    window.removeEventListener("message", listen_msg);
+
+                    try {
+                        const s = document.createElement("script");
+                        s.id = "relay-js";
+                        s.text = code;
+                        document.head.append(s);
+                    } catch (error) {
+                        console.log("error while adding relay js", error);
+                    }
+                }
+            }
+
+        }
+        window.addEventListener('message', listen_msg);
+    </script>
+
+
+
+
+    <!-- {TEMPLATE_HEAD_CONTENTS} -->
+</head>
+
+<body>
+    <div id="root"></div>
+    
+    <!-- @debug:mouse -->
+    <div id="dot" style="width: 8px; height: 8px; top: 0px; left: 0px; background: darksalmon; position: absolute; border-radius: 50%; pointer-events: none;"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

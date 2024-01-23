@@ -1,0 +1,268 @@
+/* index */
+
+:root {
+
+    --primary-50: #D1E1FD;
+    --primary-100: #D1E1FD;
+    --primary-200: #A4C1FB;
+    --primary-300: #749CF3;
+    --primary-400: #517CE7;
+    --primary-500: #1D4ED8;
+    --primary-600: #153BB9;
+    --primary-700: #0E2B9B;
+    --primary-800: #091E7D;
+    --primary-900: #051467;
+  
+    --secondary-50: #E6FEFD;
+    --secondary-100: #CEFDF9;
+    --secondary-200: #9FFCFB;
+    --secondary-300: #6EEFF7;
+    --secondary-400: #4AD9F0;
+    --secondary-500: #12BaE6;
+    --secondary-600: #0D91C5;
+    --secondary-700: #096EA5;
+    --secondary-800: #054E85;
+    --secondary-900: #03386E;
+
+    --tertiary-50: #ff9d00;
+    --tertiary-100: #ff8c00;
+    --tertiary-200: #ff7b00;
+    --tertiary-300: #ff6a00;
+    --tertiary-400: #ff5900;
+    --tertiary-500: #ff4800;
+    --tertiary-600: #e63d00;
+    --tertiary-700: #cc3300;
+    --tertiary-800: #b32900;
+    --tertiary-900: #991f00;
+  
+    --success-50: #E0FDD6;
+    --success-100: #E0FDD6;
+    --success-200: #BCFBAE;
+    --success-300: #8DF384;
+    --success-400: #63E764;
+    --success-500: #34D844;
+    --success-600: #26B941;
+    --success-700: #1A9B3E;
+    --success-800: #107D38;
+    --success-900: #096735;
+  
+    --info-50: #E6FEFD;
+    --info-100: #CBFEFD;
+    --info-200: #98F7FD;
+    --info-300: #65E6F9;
+    --info-400: #3ED0F4;
+    --info-500: #02AEED;
+    --info-600: #0187CB;
+    --info-700: #0165AA;
+    --info-800: #004889;
+    --info-900: #003371;
+  
+    --warning-50: #FEF8D1;
+    --warning-100: #FDF5CA;
+    --warning-200: #FBE896;
+    --warning-300: #F4D461;
+    --warning-400: #E9BF3A;
+    --warning-500: #DBA000;
+    --warning-600: #BC8400;
+    --warning-700: #9D6A00;
+    --warning-800: #7F5200;
+    --warning-900: #694100;
+  
+    --error-50: #FCE6D2;
+    --error-100: #FCE6D2;
+    --error-200: #FAC7A7;
+    --error-300: #F09E78;
+    --error-400: #E17655;
+    --error-500: #CE3F23;
+    --error-600: #B12619;
+    --error-700: #941211;
+    --error-800: #770B12;
+    --error-900: #620613;
+  
+    --neutral-50: #F9FAFB;
+    --neutral-100: #F2F5F9;
+    --neutral-200: #E3E8EF;
+    --neutral-300: #CDD5E0;
+    --neutral-400: #97A3B6;
+    --neutral-500: #687489;
+    --neutral-600: #4A5567;
+    --neutral-700: #374153;
+    --neutral-800: #20293A;
+    --neutral-900: #101729;
+  
+
+    --shades-100: #000000;
+    --shades-900: #FFFFFF;
+
+
+
+
+    --primary:      var(--primary-500);
+    --secondary:    var(--secondary-500);
+    --tertiary:     var(--tertiary-500);
+    --success:      var(--success-500);
+    --info:         var(--info-500);
+    --warning:      var(--warning-500);
+    --error:        var(--error-500);
+    --neutral:      var(--neutral-500);
+
+
+
+
+
+
+    /* font sizes */
+    --text-base: 1rem;
+    --text-scale: 1.25;
+
+    --t1: calc(var(--text-base) * pow(var(--text-scale), 8));
+    --t2: calc(var(--text-base) * pow(var(--text-scale), 6));
+
+    --h1: calc(var(--text-base) * pow(var(--text-scale), 5));
+    --h2: calc(var(--text-base) * pow(var(--text-scale), 4));
+    --h3: calc(var(--text-base) * pow(var(--text-scale), 3));
+
+    --sub1: calc(var(--text-base) * pow(var(--text-scale), 2));
+    --sub2: calc(var(--text-base) * var(--text-scale));
+
+    --text-button: calc(var(--text-base) * var(--text-scale));
+
+    --text-body: var(--text-base);
+    --text-label: calc(var(--text-base) / var(--text-scale));
+    
+    --text-sm: calc(var(--text-base) / pow(var(--text-scale), 2));
+    --text-xs: calc(var(--text-base) / pow(var(--text-scale), 3));
+
+
+
+    
+
+}
+
+
+
+/* DSEIGN SYSTEM FONT SIZE */
+.t1{
+    font-size: var(--t1);
+}
+
+.t2{
+    font-size: var(--t2);
+}
+
+.h1{
+    font-size: var(--h1);
+}
+
+.h2{
+    font-size: var(--h2);
+}
+
+.h3{
+    font-size: var(--h3);
+}
+
+.sub1{
+    font-size: var(--sub1);
+}
+
+.sub2{
+    font-size: var(--sub2);
+}
+
+.text-button{
+    font-size: var(--text-button);
+}
+
+.text-body{
+    font-size: var(--text-body);
+}
+
+.text-label{
+    font-size: var(--text-label);
+}
+
+.text-sm{
+    font-size: var(--text-sm);
+}
+
+.text-xs{
+    font-size: var(--text-xs);
+}
+
+
+
+
+
+/* DESIGN SYSTEM FONT COLOR */
+.primary {
+    color: var(--primary);
+}
+.secondary {
+    color: var(--secondary);
+}
+.tertiary {
+    color: var(--tertiary);
+}
+.success {
+    color: var(--success);
+}
+.info {
+    color: var(--info);
+}
+.warning {
+    color: var(--warning);
+}
+.error {
+    color: var(--error);
+}
+.neutral {
+    color: var(--neutral);
+}
+
+
+
+
+
+
+
+
+
+
+.selected {
+    background-color: var(--primary-100);
+    border: 1px solid var(--primary-500);
+}
+
+.new-div:empty {
+    min-height: 64px;
+    min-width: 64px;
+    height: 100%;
+    width: 100%;
+}
+
+.new-div:empty::after{
+    content: "ADD ELEMENT HERE";
+    color: var(--neutral-400);
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+div[name="menu"]:empty::after{
+    content: "MENU AREA";
+    color: var(--neutral-400);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
