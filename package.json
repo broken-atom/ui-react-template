@@ -23,7 +23,6 @@
     "reactjs-popup": "2.0.6",
     "rxjs": "7.8.1",
     "structurajs": "^0.11.6",
-    "ulid": "^2.3.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
